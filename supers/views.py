@@ -27,12 +27,14 @@ def supers_detail(request, pk):
         serializer = SuperSerializer(super)
         return Response(serializer.data)
     elif request.method == 'PUT':
+        super = get_list_or_404(Super, pk=pk)
         serializer = SuperSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
     elif request.method == 'Delete':
         super.delete()
         return Response(status= status.HTTP_204_NO_CONTENT)
+
 
 
         
